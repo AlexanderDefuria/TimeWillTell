@@ -1,0 +1,34 @@
+# Plot configuration for scripts/plot_results.py
+# All list filters: empty = include everything; add values to restrict.
+
+# Models to include in plots
+models = []  # e.g. ["phi4", "llama3.2-3B-gguf", "qwen3-coder-gguf"]
+
+# Experiment tags to include
+tags = []  # e.g. ["test-holdout"]
+
+# Datasets to include
+datasets = []  # e.g. ["megavul"]
+
+# Fold types to include
+fold_types = []  # e.g. ["k_fold_cross_validation", "temporal_loo_block_cross_validation"]
+
+# Run modes to include: fine_tuning | zero_shot | opro
+run_modes = []  # e.g. ["zero_shot", "opro"]
+
+# Metrics shown in every heatmap (order is preserved)
+metrics = ["f1", "precision", "recall", "accuracy"]
+
+# Random/temporal fold-type pairs for Category 4 delta plots.
+# Each pair: random = inflated baseline, temporal = harder evaluation.
+[[fold_type_pairs]]
+random   = "k_fold_cross_validation"
+temporal = "temporal_loo_block_cross_validation"
+
+[[fold_type_pairs]]
+random   = "random_sliding_window_cross_validation"
+temporal = "temporal_sliding_window_cross_validation"
+
+[[fold_type_pairs]]
+random   = "random_growing_window_cross_validation"
+temporal = "temporal_growing_window_cross_validation"

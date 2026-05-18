@@ -1,0 +1,67 @@
+# CWE retrospective: test vs holdout drop analysis (scripts/analyze_cwe_retrospective.py)
+# Empty list = include all values for that filter.
+
+# Minimum exploded rows per CWE per phase (test and holdout) before ranking.
+# Higher values reduce noise from rare CWE tags.
+min_support = 30
+
+# Top-N CWEs per reporting group (largest test−holdout drop on primary_metric).
+max_cwes = 25
+
+# Metric used for ranking: f1 | precision | recall | accuracy
+primary_metric = "f1"
+
+# Input parquet (relative to project root if not absolute)
+results = "data/eda/index_results.parquet"
+
+# Output directory for rankings and optional plots
+output_dir = "data/eda/cwe_performance"
+
+# Default dataset filter — collect_results joins CWE metadata from Megavul only.
+datasets = ["megavul"]
+
+# Filters (empty = all)
+models = []
+tags = []
+fold_types = []
+run_modes = []
+seeds = []
+
+# Omit cw to skip filtering by context-window size; set to e.g. 1024 to restrict.
+# cw = 1024
+
+# explode: one row per CWE tag per sample (multi-label).
+# primary: single CWE per sample (max numeric id from cwe_ids).
+cwe_label = "explode"
+
+# true: if a sample's cwe_ids contains both a parent and a descendant CWE on the
+# same branch, only the most specific descendant is kept before exploding.
+# Note: pruning uses Python after parquet collect; default is parallel process chunks (auto worker count).
+# prune_process_workers: omit = auto; 1 = sequential; 0 = auto; N>1 caps process count.
+# prune_process_workers = 1
+# For maximum fused Polars throughput on [2/6], set prune_ancestors = false (more rows).
+prune_ancestors = true
+
+# Use Polars streaming collect() for [2/6]/[3/6] to reduce peak memory on large inputs
+# (falls back to default engine if streaming is unsupported for the query).
+polars_streaming_collect = false
+
+# none: one ranking row per fold_number.
+# mean: pool folds — sum supports, mean metrics per CWE, then delta = mean(test) − mean(holdout).
+aggregate_folds = "mean"
+
+# Plot ids to generate (all always run; list controls which extended plots are rendered):
+# delta_bars_global | heatmap_model_cwe | heatmap_foldtype_cwe | heatmap_foldnumber_cwe | heatmap_runmode_cwe | fold_strip
+# Example: extended_plots = ["heatmap_model_cwe", "support_comparison"]
+extended_plots = ["heatmap_model_cwe", "heatmap_foldtype_cwe", "heatmap_runmode_cwe", "support_comparison", "mitre_top25_performance"]
+
+# Order CWE columns for heatmaps: delta | prevalence
+rank_by = "delta"
+
+# Set to 1–4 to enable pillar rollup (MITRE View 1000); omit or null to skip cwe_metrics_by_rollup
+# rollup_depth = 1
+
+heatmap_top_k = 15
+
+# Optional: restrict fold_type × CWE heatmap to one model
+# focus_model = "llama3.2-1B"

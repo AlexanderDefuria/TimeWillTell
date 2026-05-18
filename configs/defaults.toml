@@ -1,0 +1,38 @@
+# Canonical training hyperparameter defaults.
+# Always loaded as the base layer before any --profile.
+# CLI flags override these; profiles override these unless CLI takes precedence.
+
+[cli]
+batch_size = 8
+grad_acc = 1
+epochs = 3
+weight_decay = 0.01
+cw = 1024
+seed = 42
+opro_steps = 10
+opro_train_size = 256
+opro_candidates = 8
+api_timeout = 300
+mixed_resampling_multiplier = 1.0
+mixed_resampling_oversample_cap = 2.0
+undersampling_multiplier = 1.0
+oversampling_multiplier = 1.0
+oversampling_cap = 2.0
+cwe_assignment_strategy = "val_most_common"
+holdout_prop = 0.1
+test_prop = 0.1
+
+[profiles.finetune]
+dataset = "megavul"
+fold_type = "single_random"
+total_folds = 10
+tag = "finetune"
+
+[profiles.zero_shot]
+dataset = "megavul"
+fold_type = "single_random"
+total_folds = 10
+tag = "zero-shot"
+
+[datasets.megavul]
+zenodo_url = "https://zenodo.org/record/PLACEHOLDER/files/megavul.parquet"

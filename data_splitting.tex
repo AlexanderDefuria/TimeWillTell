@@ -1,0 +1,94 @@
+
+% Small vertical margins
+\documentclass[11pt]{article}
+
+\usepackage{circuitikz}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{ifthen}
+\usepackage[a4paper,
+  bindingoffset=0.2in,
+  left=1in,
+  right=1in,
+  top=0.3in,
+  bottom=0.6in,
+footskip=.25in]{geometry}
+
+\input{figures/splitting/macros.tex}
+
+% --- Figure sizes (adjust these to resize each figure independently) ---
+\newcommand{\sizeRandomCV}{1.0}
+\newcommand{\sizeBlockCV}{1.0}
+\newcommand{\sizeSingleHoldout}{1.0}
+\newcommand{\sizeSlidingWindow}{1.0}
+\newcommand{\sizeGrowingDataset}{1.0}
+\newcommand{\sizeGrowingWindowDates}{1.0}
+% -----------------------------------------------------------------------
+
+\title{Data Splitting Strategies Visualization}
+\author{Alexander De Furia}
+\begin{document}
+
+\maketitle
+
+\vspace{-0.5cm}
+Each figure below illustrates a different data splitting strategy for time series cross-validation. Each circle represents a data point, with blue circles indicating training data and red circles indicating testing data. In the random case the data is first shuffled before splitting. In the temporal case the data is kept in order of commit-date. Unused data is shown in gray. Validation data is extracted from the training set in each fold but not shown for clarity. For temporal data, the validation set is taken immediately preceding the test set.
+
+\begin{figure}[!ht]
+  \centering
+  \resizebox{\sizeRandomCV\textwidth}{!}{%
+    \input{figures/splitting/random_cfv.tex}
+  }%
+  \label{fig:rand_cv}
+  \caption{Random Cross Validation (k=5)}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \resizebox{\sizeBlockCV\textwidth}{!}{%
+    \input{figures/splitting/block_cv.tex}
+  }%
+  \label{fig:block_cv}
+  \caption{Block Cross Validation (k=5)}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \resizebox{\sizeSingleHoldout\textwidth}{!}{%
+    \input{figures/splitting/single_holdout.tex}
+  }%
+  \label{fig:single_holdout}
+  \caption{Single Holdout (test size=20\%)}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \resizebox{\sizeSlidingWindow\textwidth}{!}{%
+    \input{figures/splitting/sliding_window.tex}
+  }%
+  \label{fig:sliding_window}
+  \caption{Sliding Window (k=5, min-train=60\%)}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \resizebox{\sizeGrowingDataset\textwidth}{!}{%
+    \input{figures/splitting/growing_dataset.tex}
+  }%
+  \label{fig:growing_dataset}
+  \caption{Growing Dataset (k=5, min-train=60\%)}
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[!ht]
+  \vspace{3cm}
+  \centering
+  \resizebox{\sizeGrowingWindowDates\textwidth}{!}{%
+    \input{figures/splitting/growing_window_dates.tex}
+  }%
+  \label{fig:growing_window_dates}
+  \caption{Example model dates within Growing Sliding Window (k=5, min-train=60\%)}
+\end{figure}
+
+\end{document}

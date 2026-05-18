@@ -1,0 +1,43 @@
+# Plot configuration for scripts/plot_holdout_results_v2.py
+# All list filters: empty = include everything; add values to restrict.
+
+# Models to include in plots
+models = []  # e.g. ["llama3.2-1B", "phi4", "mistral3"]
+
+# Experiment tags to include
+tags = []  # e.g. ["test-holdout"]
+
+# Datasets to include
+datasets = []  # e.g. ["megavul"]
+
+# Fold types to include
+fold_types = []  # e.g. ["k_fold_cross_validation", "temporal_loo_block_cross_validation"]
+
+# Run modes to include: fine_tuning | zero_shot | opro
+run_modes = []  # e.g. ["fine_tuning"]
+
+# Data modules to include
+datamodules = []  # e.g. ["AlpacaDataset"]
+
+# Scalar filters (set to false to disable filtering on that dimension)
+seed = 42
+cw = 1024
+total_folds = 10
+
+# Metrics shown in heatmaps (order is preserved)
+metrics = ["Precision", "Recall", "F1"]
+
+# CWE analysis settings
+top_n_cwes = 20
+cwe_min_examples = 10
+cwe_rollup_depths = [1, 2, 3, 4]
+
+# Fold-type pairs for delta analysis.
+# baseline = random/standard CV, temporal = temporal evaluation.
+[[fold_type_pairs]]
+baseline = "k_fold_cross_validation"
+temporal = "temporal_growing_window_cross_validation"
+
+[[fold_type_pairs]]
+baseline = "k_fold_cross_validation"
+temporal = "temporal_loo_block_cross_validation"
