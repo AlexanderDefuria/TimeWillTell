@@ -3,8 +3,7 @@
 Replication package for the manuscript:
 
 > **Time Will Tell: Temporal Splitting as a Necessary Condition for Realistic
-> Evaluation of Source Code Vulnerability Detection** — submitted to
-> *ESEM 2026*.
+> Evaluation of Source Code Vulnerability Detection** 
 
 The repository contains the manuscript (`main.tex`), the experimental
 pipeline (LoRA fine-tuning and zero-shot inference for source code
