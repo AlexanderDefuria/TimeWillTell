@@ -11,7 +11,7 @@ studied in the paper, and all scripts used to produce the tables and
 figures.
 
 A Zenodo mirror of the code and dataset is available at
-<https://doi.org/10.5281/zenodo.20258453>.
+<https://doi.org/10.5281/zenodo.20258453>
 
 ---
 
