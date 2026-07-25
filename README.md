@@ -2,8 +2,7 @@
 
 Replication package for the manuscript:
 
-> **Time Will Tell: Temporal Splitting as a Necessary Condition for Realistic
-> Evaluation of Source Code Vulnerability Detection** 
+> **Time Will Tell: Illuminating Causes of Benchmark Inflation in Source Code Vulnerability Detection** 
 
 The repository contains the manuscript (`main.tex`), the experimental
 pipeline (LoRA fine-tuning and zero-shot inference for source code
