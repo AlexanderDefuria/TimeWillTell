@@ -200,17 +200,3 @@ parquets.
 MegaVul-C is the primary dataset; BigVul, Devign, PrimeVul and
 DiverseVul parquets are included for cross-checks.
 
----
-
-## Citation
-
-The paper is anonymised for review. Once accepted, a BibTeX entry will
-be added here. Until then, please cite the Zenodo archive
-<https://doi.org/10.5281/zenodo.20258453>.
-
----
-
-## License
-
-To be finalised on publication. This repository will be open-source in line with the OpenScience guidelines and best practices. The vendored submodules under `deps/`
-retain their upstream licenses.
